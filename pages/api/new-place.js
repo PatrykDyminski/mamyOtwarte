@@ -1,10 +1,10 @@
-import { auth, doc } from '@/lib/authenticate';
+import auth from '@/lib/authenticate';
 
 export default async function newPlace(req, res) {
     if (req.method == 'POST') {
-        auth();
+        const doc = auth();
         await doc.loadInfo();
-        var sheet = await doc.sheetsByTitle['Nowe'];
+        var sheet = doc.sheetsByTitle['Nowe'];
         sheet.addRow({ 
             name: req.body.name, 
             description: req.body.description 

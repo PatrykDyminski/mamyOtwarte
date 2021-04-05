@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import auth from '@/lib/authenticate';
 
 function toJSONstr(place) {
@@ -9,7 +8,7 @@ function toJSONstr(place) {
     });
 }
 
-export default async function listPlacesFilter(req, res) {
+export default async function getPlacesFilter(req, res) {
   if (req.method == 'GET') {
     const doc = auth();
     await doc.loadInfo();

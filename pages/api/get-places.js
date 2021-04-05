@@ -8,7 +8,7 @@ function toJSONstr(place) {
   });
 }
 
-export default async function listPlaces(req, res) {
+export default async function getPlaces(req, res) {
   if (req.method == 'GET') {
     const doc = auth();
     await doc.loadInfo();

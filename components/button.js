@@ -13,7 +13,7 @@ export default function Button({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        'bg-black',
+        'bg-blue-600',
         'text-white',
         'p-2',
         'rounded',

@@ -5,6 +5,7 @@ import MyPage from '@/components/my-page'
 import Entries from '@/components/entries'
 
 import { useEntries } from '@/lib/swr-hooks'
+import MyMap from '@/components/my-map'
 
 export default function Home() {
 
@@ -40,7 +41,9 @@ export default function Home() {
           }
       
         </div>
-        <div className="w-2/3 px-2 py-4 bg-blue-400 text-center rounded-md">MAPA</div>
+        <div className="w-2/3 px-2 py-4 bg-blue-400 text-center rounded-md">
+          <MyMap/>
+        </div>
       </div>
       
     </MyPage>

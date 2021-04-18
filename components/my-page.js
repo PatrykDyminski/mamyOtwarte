@@ -16,7 +16,6 @@ export default function MyPage({ children, pageTitle }) {
       </Head>
       <main className="px-4 py-4 max-w-3xl mx-auto sm:px-6 lg:max-w-4xl lg:px-8 xl:max-w-6xl h-screen ">
         
-        
         {children}
         
       </main>

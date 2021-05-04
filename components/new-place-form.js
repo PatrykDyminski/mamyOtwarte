@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Router from 'next/router'
 
 import Button from '@/components/button'
-import MyMap from './my-map'
+import MapForForm from './map-for-form'
 
 export default function NewPlaceForm() {
   const [name, setName] = useState('')
@@ -167,9 +167,8 @@ export default function NewPlaceForm() {
         <label htmlFor="map">
           <h3 className={labelStyle}>Wybierz lokalizację</h3>
         </label>
-        <MyMap
+        <MapForForm
           onMapClick={onMapClick}
-          showSingleMarker={true}
         />
       </div>
     </form>

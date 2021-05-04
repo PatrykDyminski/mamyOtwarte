@@ -42,7 +42,9 @@ export default function Home() {
       
         </div>
         <div className="w-2/3 px-2 py-4 bg-blue-400 text-center rounded-md">
-          <MyMap/>
+        {!isLoading &&
+          <MyMap entries={entries}/>
+        }
         </div>
       </div>
       

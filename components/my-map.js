@@ -10,8 +10,16 @@ const center = {
   lat: 51.759,
   lng: 19.457
 };
+const sw = {
+  lat: 55.0,
+  lng: 17.0
+};
+const ne = {
+  lat: 49.0,
+  lng: 22.0
+};
 
-export default function MyMap({ onMapClick, showSingleMarker }) {
+export default function MyMap({ entries, onMapClick, showSingleMarker }) {
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -22,9 +30,14 @@ export default function MyMap({ onMapClick, showSingleMarker }) {
   const [marker, setMarker] = useState(null)
 
   const onLoad = useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
+    const bounds = new window.google.maps.LatLngBounds(sw,ne);
     map.fitBounds(bounds);
     setMap(map)
+
+    if (!showSingleMarker) {
+      entries.map((e) => console.log(e.name + 
+        " " + e.lat+ " " + e.lng));
+    }
   }, [])
 
   const onUnmount = useCallback(function callback(map) {

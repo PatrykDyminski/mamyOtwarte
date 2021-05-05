@@ -11,15 +11,14 @@ export default async function getPlace(req, res) {
     await setParams(sheet, req.query);
 
     const rows = await sheet.getRows()
-    var placesStr = '{"places": []}';
-    var placesJSON = JSON.parse(placesStr);
+    var place;
     rows.forEach(row => {
       if(row.name != "" && !(row.name == "name" && row.type == "type")) {
-        placesJSON['places'].push(toJSONstr(row));
+        place = toJSONstr(row);
       }
     });
   
-    res.status(200).json(placesJSON);
+    res.status(200).json(place);
   }
   else {
       res.status(400)

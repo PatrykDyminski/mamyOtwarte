@@ -15,15 +15,14 @@ export default async function getPlace(req, res) {
     const limit = parseInt(req.query.limit);
     
     const rows = await sheet.getRows({offset: offset, limit: limit})
-    var placesStr = '{"places": []}';
-    var placesJSON = JSON.parse(placesStr);
+    var places= [];
     rows.forEach(row => {
       if(row.name != "" && !(row.name == "name" && row.type == "type")) {
-        placesJSON['places'].push(toJSONstr(row));
+        places.push(toJSONstr(row));
       }
     });
   
-    res.status(200).json(placesJSON);
+    res.status(200).json(places);
   }
   else {
       res.status(400)

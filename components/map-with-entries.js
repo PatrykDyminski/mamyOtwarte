@@ -1,7 +1,10 @@
 import MapWrapper from "./map-wrapper"
 import { Marker } from '@react-google-maps/api';
+import { useRouter } from 'next/router'
 
 export default function MapWithEntries({ entries }) {
+
+  const router = useRouter()
 
   if (entries) {
     return (
@@ -13,6 +16,7 @@ export default function MapWithEntries({ entries }) {
               lat: parseFloat(e.lat),
               lng: parseFloat(e.lng),
             }}
+            onClick={() => {router.push(`/place/${e.slug}`)} }
           />
         ))}
       </MapWrapper>

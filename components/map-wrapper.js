@@ -1,4 +1,4 @@
-import { useState, memo, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 
 const containerStyle = {
@@ -21,7 +21,7 @@ const ne = {
   lng: 22.0
 };
 
-export default function MyMap({ entries, onMapClick, showSingleMarker }) {
+export default function MapWrapper({ onMapClick, children }) {
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -29,7 +29,6 @@ export default function MyMap({ entries, onMapClick, showSingleMarker }) {
   })
 
   const [map, setMap] = useState(null)
-  const [marker, setMarker] = useState(null)
 
   const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(sw, ne);
@@ -41,16 +40,6 @@ export default function MyMap({ entries, onMapClick, showSingleMarker }) {
     setMap(null)
   }, [])
 
-  const showMarker = useCallback(function callback(e) {
-    if(showSingleMarker){
-      setMarker({
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng(),
-        time: new Date(),
-      })
-    }
-  }, [])
-
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
@@ -58,26 +47,11 @@ export default function MyMap({ entries, onMapClick, showSingleMarker }) {
       zoom={4}
       onLoad={onLoad}
       onUnmount={onUnmount}
-      onClick={(e)=>{ onMapClick(e); showMarker(e);}}
+      onClick={onMapClick}
     >
-      {showSingleMarker && marker ? 
-        <Marker 
-          position={{
-            lat: marker.lat,
-            lng: marker.lng,
-          }}
-        /> : <></>}
 
-      {!showSingleMarker && entries 
-        ? entries.map(e => (
-          <Marker 
-            position={{
-              lat: parseFloat(e.lat),
-              lng: parseFloat(e.lng),
-            }}
-          />
-        )) : <></>}
-      
+      {children}
+
     </GoogleMap>
   ) : <></>
 }

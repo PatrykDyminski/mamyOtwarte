@@ -7,7 +7,14 @@ export default async function newPlace(req, res) {
     var sheet = doc.sheetsByTitle['Nowe'];
     sheet.addRow({
       name: req.body.name,
-      description: req.body.description
+      description: req.body.description,
+      telephone: req.body.telephone,
+      website: req.body.website,
+      city: req.body.city,
+      street: req.body.street,
+      streetnr: req.body.streetnr,
+      lat: req.body.lat,
+      lng: req.body.lng
     })
     res.status(200).json({ name: req.body.name })
   }

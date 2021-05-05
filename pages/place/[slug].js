@@ -1,4 +1,5 @@
 import MyPage from '@/components/my-page'
+import { server } from '../../config';
 
 export default function PlacePage({ place }) {
   if (!place) return <></>
@@ -14,7 +15,7 @@ export default function PlacePage({ place }) {
 
 export async function getStaticProps({ params }) {
 
-  const res = await fetch(`http://localhost:3000/api/get-place/${params.slug}`)
+  const res = await fetch(`${server}/api/get-place/${params.slug}`)
   const place = await res.json()
 
   return {
@@ -26,7 +27,7 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
 
-  const res = await fetch('http://localhost:3000/api/get-places')
+  const res = await fetch(`${server}/api/get-places`)
   const places = await res.json()
 
   const paths = places.map((place) => {

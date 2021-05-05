@@ -1,19 +1,7 @@
 import auth from '@/lib/authenticate';
+import setParams from '@/lib/api-functions/set-sheet-params';
+import toJSONstr from '@/lib/api-functions/to-json-str';
 
-function toJSONstr(place) {
-  return ({
-    "name": place.name,
-    "type": place.type,
-    "opis": place.opis,
-    "telephone": place.telephone,
-    "website": place.website,
-    "city": place.city,
-    "street": place.street,
-    "streetnr": place.streetnr,
-    "lat": place.lat,
-    "lng": place.lng
-  });
-}
 
 export default async function getPlaces(req, res) {
   if (req.method == 'GET') {
@@ -21,6 +9,8 @@ export default async function getPlaces(req, res) {
     await doc.loadInfo();
     var sheet = doc.sheetsByTitle['Zweryfikowane'];
 
+    await setParams(sheet, req.query);
+    
     const offset = parseInt(req.query.offset);
     const limit = parseInt(req.query.limit);
 

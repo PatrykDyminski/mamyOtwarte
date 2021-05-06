@@ -23,7 +23,7 @@ export async function getStaticProps({ params }) {
   var query = { slug: params.slug };
   var place;
   const getData = async() => {
-    await sleep(1000)
+    await sleep(30000)
     place = await getSheet(query, "ZweryfikowaneFiltr");
   }
   await getData();

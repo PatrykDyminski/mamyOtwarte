@@ -1,6 +1,8 @@
 import MyPage from '@/components/my-page'
 import getSheet from '@/lib/get-sheet'
 
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+
 export default function PlacePage({ place }) {
   if (!place) return <></>
 
@@ -19,7 +21,12 @@ export async function getStaticProps({ params }) {
   const place = await res.json()*/
 
   var query = { slug: params.slug };
-  const place = await getSheet(query, "ZweryfikowaneFiltr");
+  var place;
+  const getData = async() => {
+    await sleep(1000)
+    place = await getSheet(query, "ZweryfikowaneFiltr");
+  }
+  await getData();
 
   return {
     props: {

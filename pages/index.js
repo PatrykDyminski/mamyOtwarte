@@ -22,7 +22,7 @@ export default function Home() {
         <p className="pt-4 text-2xl">
           Znajdziesz tu otwarte restauracje oraz lokale gastronomiczne {' '}
           <Button className="mt-8">
-            <Link href="/db-new-place">
+            <Link href="/new-place">
               <a>Dodaj Nowy</a>
             </Link>
           </Button>{' '}

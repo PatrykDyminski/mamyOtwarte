@@ -17,7 +17,8 @@ export default async function newPlace(req, res) {
       street: req.body.street,
       streetnr: req.body.streetnr,
       lat: req.body.lat,
-      lng: req.body.lng
+      lng: req.body.lng,
+      slug: req.body.name.replace(/\s+/g, '-').toLowerCase()
     })
     res.status(200).json({ name: req.body.name })
   }

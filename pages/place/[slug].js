@@ -1,6 +1,6 @@
 import MapWrapper from '@/components/map-wrapper'
 import MyPage from '@/components/my-page'
-import getSheet from '@/lib/get-sheet'
+import getSheet from '@/lib/db-get-sheet'
 import { Marker } from '@react-google-maps/api';
 
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
@@ -56,7 +56,7 @@ export async function getStaticProps({ params }) {
   var place;
   const getData = async() => {
     await sleep(30000)
-    place = await getSheet(query, "ZweryfikowaneFiltr");
+    place = await getSheet(query, true);//, "ZweryfikowaneFiltr");
   }
   await getData();
 
@@ -72,9 +72,10 @@ export async function getStaticPaths() {
   //const res = await fetch('http://localhost:3000/api/get-places')
   //const places = await res.json()
   var query;
-  const places = await getSheet(query, "Zweryfikowane");
+  const places = await getSheet(query, false);//, "Zweryfikowane");
 
   const paths = places.map((place) => {
+    console.log(place.slug)
     return {
       params: {
         slug: place.slug,

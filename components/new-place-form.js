@@ -23,7 +23,7 @@ export default function NewPlaceForm() {
     setSubmitting(true)
     e.preventDefault()
     try {
-      const res = await fetch('/api/new-place', {
+      const res = await fetch('/api/db-new-place', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

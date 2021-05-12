@@ -13,7 +13,6 @@ export default async function getPlaces(req, res) {
       snapshot.forEach(p => {
       console.log(p.val());
     });*/
-    console.log(places);
     res.status(200).json(places);
   }
   else {

@@ -20,6 +20,7 @@ export default function Button({
         'uppercase',
         'text-sm',
         'font-bold',
+        'hover:bg-blue-400',
         {
           [className]: Boolean(className),
         }

@@ -1,7 +1,9 @@
 import MapWrapper from '@/components/map-wrapper'
 import MyPage from '@/components/my-page'
 import getPlaces from '@/lib/get-places'
+import Link from 'next/link'
 import { Marker } from '@react-google-maps/api';
+import Button from '@/components/button'
 
 export default function PlacePage({ place }) {
   if (!place) return <></>
@@ -12,22 +14,29 @@ export default function PlacePage({ place }) {
         <div className="flex flex-col text-center items-center my-8">
           <h1 className="text-6xl font-bold">
             Nie do wiary! {place.name}
-            <div className="text-blue-600">
-              Mają Otwarte!
-            </div>
+            <Link href="/">
+              <div className="text-blue-600 cursor-pointer">
+                Mają Otwarte!
+              </div>
+            </Link>
           </h1>
         </div>
         
-        <div className="flex overflow-hidden h-4/6 gap-4">
-          <div className="w-1/3 px-2 py-4 bg-blue-500 rounded-md flex">
-            <ul className ="list-disc text-white text-2xl pt-4 pl-8">
-              <li>{place.type}</li>
-              <li>{place.opis}</li>
-              <li>{place.telephone}</li>
-              <li>{place.website}</li>
-              <li>{place.street} {place.streetnr}</li>
-              <li>{place.city}</li>
-            </ul>
+        <div className="flex h-4/6 gap-4">
+          <div className="w-1/3 px-2 py-4 border-4 border-blue-500 rounded-md">
+            <h2 className="tracking-widest text-s title-font font-medium text-gray-400 mb-1">{place.type}</h2>
+            <h1 className="title-font text-xl font-medium text-gray-900 mb-3">{place.name}</h1>
+            <p className="leading-relaxed mb-3">{place.description}</p>
+            <h2 className="tracking-widest text-s title-font font-medium text-gray-700 mb-1">tel: {place.telephone}</h2>
+            <h2 className="tracking-widest text-s title-font font-medium text-gray-700 mb-1">{place.street} {place.streetnr}</h2>
+            <h2 className="tracking-widest text-s title-font font-medium text-gray-700 mb-1">{place.city}</h2>
+
+            <Button className="mt-8 transform transition duration-100 hover:scale-110">
+              <Link href={"https://"+place.website} passHref={true}>
+                <a className="cursor-pointer">{place.website}</a>
+              </Link>
+            </Button>
+
           </div>
           <div className="w-2/3 px-2 py-4 bg-blue-400 text-center rounded-md">
             <MapWrapper onMapClick={e => console.log(e.latLng.lat())}>

@@ -5,9 +5,9 @@ export default function Entries({ entries }) {
     return (
       <div className="flex-grow">
         {entries.map((e) => (
-          <Link as={`/place/${e.slug}`} href={`/place/${e.slug}`}>
-            <div key={e.name} className="py-2 rounded bg-blue-400 mb-2 text-white cursor-pointer">
-              <h2>{e.name}-{e.type}</h2>
+          <Link as={`/place/${e.slug}`} href={`/place/${e.slug}`} key={e.name} >
+            <div className="py-2 rounded bg-blue-400 mb-2 text-white cursor-pointer">
+              <h2 className="text-lg font-semibold">{e.name}</h2>
             </div>
           </Link>
         ))}

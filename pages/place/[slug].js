@@ -1,6 +1,6 @@
 import MapWrapper from '@/components/map-wrapper'
 import MyPage from '@/components/my-page'
-import getPlaces from '@/lib/db-get-places'
+import getPlaces from '@/lib/get-places'
 import { Marker } from '@react-google-maps/api';
 
 export default function PlacePage({ place }) {

@@ -1,4 +1,4 @@
-import getPlaces from '@/lib/db-get-places';
+import getPlaces from '@/lib/get-places';
 import getDB from '@/lib/get-db';
 
 export default async function getPlace(req, res) {

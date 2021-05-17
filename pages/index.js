@@ -29,10 +29,10 @@ export default function Home() {
         </p>
       </div>
       <div className="flex overflow-hidden h-4/6 gap-4">
-        <div className="w-1/3 px-2 py-4 bg-blue-500 text-center overflow-auto rounded-md flex">
+        <div className="w-1/3 px-2 py-2 bg-blue-400 overflow-auto rounded-md flex">
           
           {isLoading &&
-            <h1 className="text-white text-2xl m-auto">Ładowanie...</h1>
+            <h1 className="text-white text-center text-2xl m-auto">Ładowanie...</h1>
           }
 
           {!isLoading &&

@@ -1,8 +1,8 @@
-import getSheet from '@/lib/db-get-sheet';
+import getPlaces from '@/lib/db-get-places';
 
 export default async function getPlace(req, res) {
   if (req.method == 'GET') {
-    var data = await getSheet(req.query, true);
+    var data = await getPlaces(req.query, true);
     res.status(200).json(data[0]);
   }
   else {

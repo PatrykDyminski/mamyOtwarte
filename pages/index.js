@@ -1,14 +1,26 @@
 import Link from 'next/link'
 import { useEntries } from '@/lib/swr-hooks'
+import { useState } from 'react'
 
 import Button from '@/components/button'
 import MyPage from '@/components/my-page'
 import Entries from '@/components/entries'
 import MapWithEntries from '@/components/map-with-entries'
+import SearchInputField from '@/components/search-input-field'
 
 export default function Home() {
 
   const { entries, isLoading } = useEntries()
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const search = (phrase) => setSearchTerm(phrase);
+  
+  const results = !searchTerm
+    ? entries
+    : entries.filter(entry =>
+      entry.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
 
   return (
     <MyPage pageTitle='Witaj'>
@@ -29,20 +41,23 @@ export default function Home() {
         </p>
       </div>
       <div className="flex overflow-hidden h-4/6 gap-4">
-        <div className="w-1/3 px-2 py-2 bg-blue-400 overflow-auto rounded-md flex">
+        <div className="w-1/3 px-2 py-2 bg-blue-400 overflow-auto rounded-md flex flex-col">
+
+          <SearchInputField onChange={search} />
           
           {isLoading &&
             <h1 className="text-white text-center text-2xl m-auto">Ładowanie...</h1>
           }
 
           {!isLoading &&
-            <Entries entries={entries} />
+            <Entries entries={results} />
           }
       
         </div>
+
         <div className="w-2/3 px-2 py-4 bg-blue-400 text-center rounded-md">
         {!isLoading &&
-          <MapWithEntries entries={entries}/>
+          <MapWithEntries entries={results}/>
         }
         </div>
       </div>

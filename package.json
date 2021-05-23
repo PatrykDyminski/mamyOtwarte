@@ -19,6 +19,7 @@
     "swr": "^0.5.5"
   },
   "devDependencies": {
+    "@tailwindcss/custom-forms": "^0.2.1",
     "autoprefixer": "^10.0.4",
     "postcss": "^8.1.10",
     "tailwindcss": "^2.0.4"

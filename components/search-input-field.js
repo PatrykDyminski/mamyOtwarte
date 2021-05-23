@@ -1,7 +1,7 @@
 export default function SearchInputField({ onChange }) {
 
   return (
-    <div className="p-2 mb-4 rounded bg-white cursor-pointer shadow-md flex flex-row items-center justify-between">
+    <div className="p-2 rounded bg-white cursor-pointer shadow-md flex flex-row items-center justify-between">
       <input
         id="searchPlace"
         className="text-lg font-medium text-gray-500 leading-relaxed appearance-none outline-none"

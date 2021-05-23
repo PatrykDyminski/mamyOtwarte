@@ -13,23 +13,16 @@ export default function Home() {
   const { entries, isLoading } = useEntries()
 
   const [searchTerm, setSearchTerm] = useState("");
-
   const [searchCat, setSearchCat] = useState("name");
 
-  const search = (phrase) => setSearchTerm(phrase);
+  const filterByCatAndTerm = entries?.filter(entry =>
+    entry?.[searchCat]?.toLowerCase().includes(searchTerm.toLowerCase())
+  )
 
   const results = !searchTerm
     ? entries
-    : searchCat == "name" ? entries.filter(entry =>
-          entry.name.toLowerCase().includes(searchTerm.toLowerCase())
-      ) 
-    : searchCat == "type" ? entries.filter(entry =>
-          entry.type.toLowerCase().includes(searchTerm.toLowerCase())
-      ) 
-    : entries.filter(entry =>
-          entry.city.toLowerCase().includes(searchTerm.toLowerCase())
-      )  
-
+    : filterByCatAndTerm
+  
   return (
     <MyPage pageTitle='Witaj'>
       <div className="flex flex-col text-center items-center my-8">
@@ -51,7 +44,7 @@ export default function Home() {
       <div className="flex overflow-hidden h-4/6 gap-4">
         <div className="w-1/3 px-2 py-2 bg-blue-400 overflow-auto rounded-md flex flex-col">
 
-          <SearchInputField onChange={search} />
+          <SearchInputField onChange={setSearchTerm} />
 
           <div className="flex items-center gap-4 mt-2 mb-4" onChange={event => setSearchCat(event.target.value)}>
             <label className="inline-flex items-center">
@@ -59,7 +52,7 @@ export default function Home() {
               <span className="ml-2 text-white font-semibold tracking-wide">Nazwa</span>
             </label>
             <label className="inline-flex items-center">
-              <input type="radio" name="searchCat" className="form-radio h-5 w-5 text-blue-600" defaultChecked value="type"/>
+              <input type="radio" name="searchCat" className="form-radio h-5 w-5 text-blue-600" value="type"/>
               <span className="ml-2 text-white font-semibold tracking-wide">Kategoria</span>
             </label>
             <label className="inline-flex items-center">

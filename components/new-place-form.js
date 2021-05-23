@@ -16,8 +16,9 @@ export default function NewPlaceForm() {
   const [lng, setLng] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
-  const inputStyle = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-  const labelStyle = "block text-gray-700 text-sm font-bold mb-2"
+  const inputStyle = "shadow appearance-none border rounded w-full py-1 px-2 text-gray-700 text-lg font-medium leading-relaxed focus:outline-none focus:shadow-outline"
+  const labelStyle = "block text-gray-100 font-semibold mb-1"
+  const divStyle = "mt-2"
 
   async function submitHandler(e) {
     setSubmitting(true)
@@ -57,10 +58,10 @@ export default function NewPlaceForm() {
   return (
     <form 
       onSubmit={submitHandler}
-      className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex gap-4"
+      className="flex overflow-hidden h-4/6 gap-4"
     >
-      <div className="w-1/3">
-        <div className="my-4">
+      <div className="w-1/3 px-2 py-2 bg-blue-400 overflow-auto rounded-md flex flex-col">
+        <div className="">
           <label htmlFor="name">
             <h3 className={labelStyle}>Nazwa działalności</h3>
           </label>
@@ -74,7 +75,7 @@ export default function NewPlaceForm() {
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div className="my-4">
+        <div className={divStyle}>
           <label htmlFor="telephone">
             <h3 className={labelStyle}>Numer telefonu</h3>
           </label>
@@ -91,7 +92,7 @@ export default function NewPlaceForm() {
             onChange={(e) => setTelephone(e.target.value)}
           />
         </div>
-        <div className="my-4">
+        <div className={divStyle}>
           <label htmlFor="website">
             <h3 className={labelStyle}>Strona WWW</h3>
           </label>
@@ -105,7 +106,7 @@ export default function NewPlaceForm() {
             onChange={(e) => setWebsite(e.target.value)}
           />
         </div>
-        <div className="my-4">
+        <div className={divStyle}>
           <label htmlFor="city">
             <h3 className={labelStyle}>Miasto</h3>
           </label>
@@ -119,7 +120,7 @@ export default function NewPlaceForm() {
             onChange={(e) => setCity(e.target.value)}
           />
         </div>
-        <div className="my-4">
+        <div className={divStyle}>
           <label htmlFor="street">
             <h3 className={labelStyle}>Ulica</h3>
           </label>
@@ -133,7 +134,7 @@ export default function NewPlaceForm() {
             onChange={(e) => setStreet(e.target.value)}
           />
         </div>
-        <div className="my-4">
+        <div className={divStyle}>
           <label htmlFor="name">
             <h3 className={labelStyle}>Numer Budynku/lokalu</h3>
           </label>
@@ -147,7 +148,7 @@ export default function NewPlaceForm() {
             onChange={(e) => setStreetnr(e.target.value)}
           />
         </div>
-        <div className="my-4">
+        <div className={divStyle}>
           <label htmlFor="description">
             <h3 className={labelStyle}>Opis działalności</h3>
           </label>
@@ -163,9 +164,10 @@ export default function NewPlaceForm() {
           {submitting ? 'Zapisywanie ...' : 'Zapisz'}
         </Button>
       </div>
+
       <div className="w-2/3">
         <label htmlFor="map">
-          <h3 className={labelStyle}>Wybierz lokalizację</h3>
+          <h3 className="block text-black font-semibold mb-1">Wybierz lokalizację</h3>
         </label>
         <MapForForm
           onMapClick={onMapClick}

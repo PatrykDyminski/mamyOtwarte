@@ -16,7 +16,6 @@ if(firebase.apps.length == 0){
 
 export default async function signin(req, res) {
   
-  
   var email = req.query.email;
   var password = req.query.password;
 
@@ -24,6 +23,7 @@ export default async function signin(req, res) {
   firebase.auth().signInWithEmailAndPassword(email, password)
   .then((userCredential)=> {
     console.log("Zalogowano");
+    user = "user"
     /*firebase.auth().signOut().then(() => {
       console.log("Wylogowano")
     }).catch((error) => {
@@ -31,6 +31,7 @@ export default async function signin(req, res) {
     })*/
   })
   .catch((error) => {
+    res.status(200).json(error);
     console.log(error.message);
   })
   res.status(200).json(user);

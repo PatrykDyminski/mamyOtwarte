@@ -5,6 +5,7 @@ if(firebase.apps.length == 0){
 }
 
 export default async function signin(req, res) {
+  var user
   firebase.auth().signOut().then(() => {
     console.log("Wylogowano")
   }).catch((error) => {

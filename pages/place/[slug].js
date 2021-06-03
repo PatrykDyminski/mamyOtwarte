@@ -1,4 +1,4 @@
-import MapWrapper from '@/components/map-wrapper'
+import MapWrapper from '@/components/maps/map-wrapper'
 import MyPage from '@/components/my-page'
 import getPlaces from '@/lib/get-places'
 import Link from 'next/link'

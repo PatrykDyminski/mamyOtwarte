@@ -2,18 +2,21 @@ import { useState } from 'react'
 import Router from 'next/router'
 
 import Button from '@/components/button'
-import MapForForm from './maps/map-for-form'
 
-export default function NewPlaceForm() {
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
-  const [telephone, setTelephone] = useState()
-  const [website, setWebsite] = useState('')
-  const [city, setCity] = useState('')
-  const [street, setStreet] = useState('')
-  const [streetnr, setStreetnr] = useState('')
-  const [lat, setLat] = useState('')
-  const [lng, setLng] = useState('')
+export default function EditPlaceForm({ place }) {
+
+  const [name, setName] = useState(place.name)
+  const [description, setDescription] = useState(place.description)
+  const [telephone, setTelephone] = useState(place.telephone)
+  const [website, setWebsite] = useState(place.website)
+  const [city, setCity] = useState(place.city)
+  const [street, setStreet] = useState(place.street)
+  const [streetnr, setStreetnr] = useState(place.streetnr)
+  const [lat, setLat] = useState(place.lat)
+  const [lng, setLng] = useState(place.lng)
+  const [verified, setVerified] = useState(place.verified)
+  const [slug, setSlug] = useState(place.slug)
+  const [type, setType] = useState(place.type)
   const [submitting, setSubmitting] = useState(false)
 
   const inputStyle = "shadow appearance-none border rounded w-full py-1 px-2 text-gray-700 text-lg font-medium leading-relaxed focus:outline-none focus:shadow-outline"
@@ -39,6 +42,9 @@ export default function NewPlaceForm() {
           streetnr,
           lat,
           lng,
+          verified,
+          slug,
+          type,
         }),
       })
       setSubmitting(false)
@@ -50,18 +56,13 @@ export default function NewPlaceForm() {
     }
   }
 
-  async function onMapClick(e){
-    setLat(e.latLng.lat())
-    setLng(e.latLng.lng())
-  }
-
   return (
     <form 
       onSubmit={submitHandler}
-      className="flex overflow-hidden h-4/6 gap-4"
+      className="flex gap-4"
     >
-      <div className="w-1/3 px-2 py-2 bg-blue-400 overflow-auto rounded-md flex flex-col">
-        <div className="">
+      <div className="px-2 py-2 bg-blue-400 rounded-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto">
+        <div className={divStyle}>
           <label htmlFor="name">
             <h3 className={labelStyle}>Nazwa działalności</h3>
           </label>
@@ -149,6 +150,49 @@ export default function NewPlaceForm() {
           />
         </div>
         <div className={divStyle}>
+          <label htmlFor="type">
+            <h3 className={labelStyle}>Typ</h3>
+          </label>
+          <input
+            id="type"
+            className={inputStyle}
+            type="text"
+            name="type"
+            value={type}
+            placeholder="Bar"
+            onChange={(e) => setType(e.target.value)}
+          />
+        </div>
+        <div className={divStyle}>
+          <label htmlFor="slug">
+            <h3 className={labelStyle}>Slug</h3>
+          </label>
+          <input
+            id="slug"
+            className={inputStyle}
+            type="text"
+            name="slug"
+            value={slug}
+            placeholder="true"
+            onChange={(e) => setSlug(e.target.value)}
+          />
+        </div>
+        <div className={divStyle}>
+          <label htmlFor="verified">
+            <h3 className={labelStyle}>Zweryfikowane</h3>
+          </label>
+          <div className="flex flex-col gap-2" onChange={(e) => e.target.value === "t" ? setVerified(true) : setVerified(false)}>
+            <label className="inline-flex items-center">
+              <input type="radio" name="verified" className="form-radio h-5 w-5 text-blue-600" value="t" defaultChecked={verified === true}/>
+              <span className="ml-2 text-white font-semibold tracking-wide">Tak</span>
+            </label>
+            <label className="inline-flex items-center">
+              <input type="radio" name="verified" className="form-radio h-5 w-5 text-blue-600" value="f" defaultChecked={verified === false}/>
+              <span className="ml-2 text-white font-semibold tracking-wide">Nie</span>
+            </label>
+          </div>
+        </div>
+        <div className={divStyle} className="col-span-2">
           <label htmlFor="description">
             <h3 className={labelStyle}>Opis działalności</h3>
           </label>
@@ -160,18 +204,9 @@ export default function NewPlaceForm() {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <Button disabled={submitting} type="submit">
+        <Button disabled={submitting} type="submit" className="m-2">
           {submitting ? 'Zapisywanie ...' : 'Zapisz'}
         </Button>
-      </div>
-
-      <div className="w-2/3">
-        <label htmlFor="map">
-          <h3 className="block text-black font-semibold mb-1">Wybierz lokalizację</h3>
-        </label>
-        <MapForForm
-          onMapClick={onMapClick}
-        />
       </div>
     </form>
   )

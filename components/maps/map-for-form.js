@@ -1,4 +1,4 @@
-import MapWrapper from "./map-wrapper"
+import MapWrapper from '@/components/maps/map-wrapper'
 import { Marker } from '@react-google-maps/api';
 import { useState, useCallback } from 'react'
 

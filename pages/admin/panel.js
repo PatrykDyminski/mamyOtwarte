@@ -1,12 +1,7 @@
-import Link from 'next/link'
 import { useEntries } from '@/lib/swr-hooks'
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
-import Button from '@/components/button'
 import MyPage from '@/components/my-page'
-import Entries from '@/components/entries'
-import MapWithEntries from '@/components/map-with-entries'
-import SearchInputField from '@/components/search-input-field'
 import Accordion from '@/components/accordion/accordion';
 import AccordionHeader from '@/components/accordion/accordion-header';
 
@@ -49,7 +44,7 @@ export default function Panel() {
                   </div>
                 </AccordionHeader>
                 <Accordion id={e.slug} isOpen={activeItem}>
-                  <div className="bg-white rounded shadow-md">
+                  <div className="bg-blue-400 rounded shadow-md text-white p-3">
                     {e.city}
                   </div>
                 </Accordion>

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Router from 'next/router'
 
 import Button from '@/components/button'
-import MapForForm from './map-for-form'
+import MapForForm from './maps/map-for-form'
 
 export default function NewPlaceForm() {
   const [name, setName] = useState('')

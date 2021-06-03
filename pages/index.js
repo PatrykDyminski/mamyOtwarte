@@ -5,7 +5,7 @@ import { useState } from 'react'
 import Button from '@/components/button'
 import MyPage from '@/components/my-page'
 import Entries from '@/components/entries'
-import MapWithEntries from '@/components/map-with-entries'
+import MapWithEntries from '@/components/maps/map-with-entries'
 import SearchInputField from '@/components/search-input-field'
 
 export default function Home() {

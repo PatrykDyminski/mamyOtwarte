@@ -4,6 +4,7 @@ import { useState } from 'react';
 import MyPage from '@/components/my-page'
 import Accordion from '@/components/accordion/accordion';
 import AccordionHeader from '@/components/accordion/accordion-header';
+import EditPlaceForm from '@/components/edit-place-form';
 
 export default function Panel() {
 
@@ -32,7 +33,7 @@ export default function Panel() {
               <div key={e.name}>
                 <AccordionHeader
                   id={e.slug}
-                  activeItem={activeItem}
+                  activeitem={activeItem}
                   onClick={toggleActiveItem(e.slug)}
                 >
                   <div className="">
@@ -45,7 +46,7 @@ export default function Panel() {
                 </AccordionHeader>
                 <Accordion id={e.slug} isOpen={activeItem}>
                   <div className="bg-blue-400 rounded shadow-md text-white p-3">
-                    {e.city}
+                    <EditPlaceForm place={e} />
                   </div>
                 </Accordion>
               </div>

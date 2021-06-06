@@ -49,7 +49,6 @@ export default function EditPlaceForm({ place }) {
       })
       setSubmitting(false)
       const json = await res.json()
-      console.log(res.ok);
       if (!res.ok) throw Error(json.message)
       Router.push('/')
     } catch (e) {

@@ -1,4 +1,4 @@
-import { useEntries } from '@/lib/swr-hooks'
+import { useAllEntries } from '@/lib/swr-hooks'
 import { useState } from 'react';
 
 import MyPage from '@/components/my-page'
@@ -13,13 +13,13 @@ export default function Panel() {
     setActiveItem((prevState) => (prevState !== id ? id : ''));
   };
 
-  const { entries, isLoading } = useEntries()
+  const { entries, isLoading } = useAllEntries()
 
   return (
     <MyPage pageTitle='Admin'>
       <div className="flex flex-col text-center items-center my-8">
         <h1 className="text-6xl font-bold">
-          Pandel Administracyjny
+          Panel Administracyjny
         </h1>
       </div>
       <div>

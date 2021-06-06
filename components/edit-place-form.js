@@ -27,7 +27,7 @@ export default function EditPlaceForm({ place }) {
     setSubmitting(true)
     e.preventDefault()
     try {
-      const res = await fetch('/api/new-place', {
+      const res = await fetch('/api/edit-place', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,6 +49,7 @@ export default function EditPlaceForm({ place }) {
       })
       setSubmitting(false)
       const json = await res.json()
+      console.log(res.ok);
       if (!res.ok) throw Error(json.message)
       Router.push('/')
     } catch (e) {
@@ -163,19 +164,7 @@ export default function EditPlaceForm({ place }) {
             onChange={(e) => setType(e.target.value)}
           />
         </div>
-        <div className={divStyle}>
-          <label htmlFor="slug">
-            <h3 className={labelStyle}>Slug</h3>
-          </label>
-          <input
-            id="slug"
-            className={inputStyle}
-            type="text"
-            name="slug"
-            value={slug}
-            placeholder="true"
-            onChange={(e) => setSlug(e.target.value)}
-          />
+        <div className={divStyle}>     
         </div>
         <div className={divStyle}>
           <label htmlFor="verified">
@@ -206,7 +195,7 @@ export default function EditPlaceForm({ place }) {
         </div>
         <Button disabled={submitting} type="submit" className="m-2">
           {submitting ? 'Zapisywanie ...' : 'Zapisz'}
-        </Button>
+        </Button>    
       </div>
     </form>
   )

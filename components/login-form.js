@@ -3,7 +3,7 @@ import Router from 'next/router'
 
 import Button from '@/components/button'
 
-export default function NewPlaceForm() {
+export default function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [submitting, setSubmitting] = useState(false)

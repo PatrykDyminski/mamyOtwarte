@@ -26,33 +26,38 @@ export default function EditPlaceForm({ place }) {
   async function submitHandler(e) {
     setSubmitting(true)
     e.preventDefault()
+    const updatedEntry = JSON.stringify({
+      name,
+      description,
+      telephone,
+      website,
+      city,
+      street,
+      streetnr,
+      lat,
+      lng,
+      verified,
+      slug,
+      type,
+    });
+
     try {
       const res = await fetch('/api/edit-place', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name,
-          description,
-          telephone,
-          website,
-          city,
-          street,
-          streetnr,
-          lat,
-          lng,
-          verified,
-          slug,
-          type,
-        }),
+        body: updatedEntry,
       })
       setSubmitting(false)
       const json = await res.json()
-      if (!res.ok) throw Error(json.message)
-      Router.push('/')
+      if (!res.ok){
+        throw Error(json.message)
+      } else {
+        //Router.push('/')
+      }
     } catch (e) {
-      //throw Error(e.message)
+      throw Error(e.message)
     }
   }
 

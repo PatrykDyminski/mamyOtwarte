@@ -22,7 +22,7 @@ export default async function verify(req, res) {
             type: req.body.type,
           })
         })
-        res.status(200).json(slug);
+        res.status(200).json({ slug });
       }
       else 
         res.status(400);

@@ -168,8 +168,6 @@ export default function EditPlaceForm({ place }) {
             onChange={(e) => setType(e.target.value)}
           />
         </div>
-        <div className={divStyle}>     
-        </div>
         <div className={divStyle}>
           <label htmlFor="verified">
             <h3 className={labelStyle}>Zweryfikowane</h3>
@@ -185,7 +183,7 @@ export default function EditPlaceForm({ place }) {
             </label>
           </div>
         </div>
-        <div className={divStyle} className="col-span-2">
+        <div className={divStyle} className="col-span-3">
           <label htmlFor="description">
             <h3 className={labelStyle}>Opis działalności</h3>
           </label>
